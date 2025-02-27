@@ -1,0 +1,562 @@
+/* Base styles */
+:root {
+    --primary-color: #164991;
+    --secondary-color: #5b5bbd;
+}
+
+body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    padding-top: 90px; /* Keep this the same */
+}
+
+/* Navigation */
+.navbar {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    padding: 1.5rem;
+    height: 90px;
+}
+
+.navbar.navbar-scrolled {
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+    color: var(--primary-color) !important;
+    font-weight: bold;
+}
+
+.nav-link {
+    color: var(--primary-color) !important;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--secondary-color) !important;
+}
+
+/* Mobile navigation */
+@media (max-width: 991px) {
+    .navbar {
+        padding: 0.8rem;
+        height: auto;
+    }
+
+    .navbar-collapse {
+        background: rgba(255, 255, 255, 0.98);
+        padding: 1rem;
+        border-radius: 8px;
+        margin-top: 0.5rem;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
+    .navbar-toggler {
+        border: none;
+        padding: 0.5rem;
+        font-size: 1.1rem;
+    }
+    
+    .navbar-toggler:focus {
+        box-shadow: none;
+        outline: none;
+    }
+
+    .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(22, 73, 145, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    .nav-item {
+        padding: 0.5rem 0;
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .nav-item:last-child {
+        border-bottom: none;
+    }
+
+    .nav-link {
+        padding: 0.5rem 1rem !important;
+        font-size: 1.1rem;
+    }
+
+    .dropdown-menu {
+        border: none;
+        background: rgba(255,255,255,0.5);
+        padding: 0.5rem;
+    }
+
+    .dropdown-item {
+        padding: 0.5rem 1rem;
+        color: var(--primary-color);
+    }
+
+    .dropdown-item:hover {
+        background: rgba(22, 73, 145, 0.1);
+        color: var(--secondary-color);
+    }
+}
+
+/* Additional mobile adjustments */
+@media (max-width: 768px) {
+    body {
+        padding-top: 62px; /* Reduced padding for mobile */
+    }
+
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+
+    .banner {
+        margin-top: -62px;
+    }
+}
+
+/* Banner */
+.banner {
+    position: relative;
+    background: url('https://cdn.jsdelivr.net/gh/actuallysoham/smsi23/people/ann-arbor-michigan-downtown.jpg') no-repeat center center/cover;
+    padding: 3rem 0; /* Reduced padding */
+    margin-top: -90px;
+    height: 500px; /* Fixed height instead of viewport-based */
+    display: flex;
+    align-items: center; /* Center content vertically */
+}
+
+.banner::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+/* Banner content spacing */
+.banner .container {
+    position: relative;
+    z-index: 2;
+    padding-top: 90px; /* Match body padding-top to clear navbar */
+}
+
+/* Logo container */
+.banner .logo-container {
+    margin-bottom: 1.5rem; /* Reduced margin */
+}
+
+/* Logo specific styles - override any .text-center styles */
+.banner .logo-container img {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: 180px;
+    height: auto;
+    border-radius: 12px; /* Add rounded corners to the logo */
+}
+
+/* Speaker Grid */
+.row.gx-1 {
+    margin: 0 -10px;
+}
+
+.col.mb-5 {
+    padding: 10px;
+    transition: all 0.3s ease;
+}
+
+.text-center {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.text-center:hover {
+    box-shadow: none;
+}
+
+/* Speaker Images */
+.img-fluid.rounded-circle {
+    width: 200px !important;
+    height: 200px !important;
+    object-fit: cover;
+    border-radius: 50% !important;
+    margin: 0 auto 1rem auto;
+    display: block;
+    padding: 0 !important;
+    transition: all 0.3s ease;
+    border: 4px solid white;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Add these new classes for the fade effect */
+.speaker-faded .img-fluid.rounded-circle {
+    opacity: 0.3;
+    filter: grayscale(100%);
+}
+
+.speaker-focused .img-fluid.rounded-circle {
+    transform: scale(1.05);
+    z-index: 1;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: white !important;
+    border-color: white !important;
+    padding: 8px 20px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    color: var(--primary-color) !important;
+    font-weight: 600;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.btn-primary:hover {
+    background-color: white !important;
+    border-color: white !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    color: var(--secondary-color) !important;
+}
+
+/* Text Colors */
+.text-white {
+    color: white !important;
+}
+
+.text-muted {
+    color: #6c757d !important;
+}
+
+/* Sections */
+.bg-light {
+    background-color: white !important;
+}
+
+.py-5 {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+}
+
+/* Footer */
+footer {
+    background: var(--primary-color);
+    color: white;
+    padding: 1rem 0;
+}
+
+/* Social Media Icons */
+.bi {
+    margin: 0 5px;
+}
+
+/* Collapse Content */
+.collapse .text {
+    padding: 15px;
+    margin-top: 10px;
+    background: #f8f9fa;
+    border-radius: 4px;
+}
+
+/* Particles JS Container */
+#particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+/* Remove underlines from all links */
+a {
+    text-decoration: none !important; /* Remove underline */
+}
+
+a:hover {
+    text-decoration: none !important; /* Ensure no underline on hover */
+}
+
+/* CFP Page Styles */
+.accordion-button {
+    color: var(--primary-color);
+    font-weight: 500;
+    background-color: white;
+}
+
+.accordion-button:not(.collapsed) {
+    color: var(--secondary-color);
+    background-color: rgba(22, 73, 145, 0.05);
+}
+
+.accordion-button:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(22, 73, 145, 0.25);
+}
+
+/* Important dates styling */
+.important-dates {
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    color: white;
+}
+
+.important-dates h2 {
+    color: white;
+}
+
+.important-dates ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.important-dates li {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+    position: relative;
+    color: white;
+}
+
+.important-dates li::before {
+    content: "•";
+    color: white;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
+
+.important-dates p {
+    color: rgba(255,255,255,0.8) !important;
+}
+
+/* Submission form button */
+.submission-button {
+    background-color: var(--primary-color) !important;
+    color: white !important;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 30px;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.submission-button:hover {
+    background-color: var(--secondary-color) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Theme list styling */
+.theme-list {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.theme-list li {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+/* CFP Header */
+.cfp-header {
+    background: white;
+    color: var(--primary-color);
+    padding: 2rem 0;
+    margin-top: 60px; /* Reduced from 90px */
+}
+
+/* Program Schedule Styles */
+.program-table {
+    border: 1px solid rgba(0,0,0,0.1);
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.program-table th {
+    background: var(--primary-color);
+    color: white;
+    font-weight: 500;
+    padding: 1rem;
+}
+
+.program-table td {
+    padding: 1rem;
+    vertical-align: middle;
+    color: var(--text-color);
+}
+
+.program-table ul {
+    margin-bottom: 0;
+}
+
+.program-table li {
+    padding: 0.3rem 0;
+    color: var(--text-color);
+}
+
+/* Style speaker names and talk titles */
+.program-table li {
+    position: relative;
+}
+
+.program-table li::before {
+    content: attr(data-name);
+    font-weight: 600;
+}
+
+.program-table li::after {
+    content: attr(data-title);
+    font-style: italic;
+}
+
+/* Remove highlight class */
+.program-table .highlight {
+    color: var(--text-color);
+}
+
+.program-day {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    margin-top: -1rem; /* Add negative margin to pull content up */
+}
+
+.program-day h2 {
+    color: var(--primary-color);
+}
+
+@media (max-width: 768px) {
+    .program-table {
+        font-size: 0.9rem;
+    }
+    
+    .program-table td, 
+    .program-table th {
+        padding: 0.75rem;
+    }
+}
+
+/* Adjust body padding for these pages */
+body.cfp-page,
+body.program-page {
+    padding-top: 60px; /* Reduced from 90px */
+}
+
+/* Carousel Styles */
+.carousel {
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.carousel-item {
+    height: 400px;
+}
+
+.carousel-item img {
+    height: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+}
+
+.carousel-caption {
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 12px;
+    padding: 15px;
+    bottom: 20px;
+    left: 10%;
+    right: 10%;
+}
+
+.carousel-caption h5 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.carousel-caption p {
+    font-size: 1rem;
+    margin-bottom: 0;
+}
+
+/* Navigation buttons */
+.carousel-control-prev,
+.carousel-control-next {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.9;
+    margin: 0 20px;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    filter: invert(1) grayscale(100);
+    width: 24px;
+    height: 24px;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+    background: white;
+    opacity: 1;
+}
+
+/* Indicator buttons */
+.carousel-indicators {
+    bottom: -10px;
+}
+
+.carousel-indicators button {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin: 0 5px;
+    background-color: var(--primary-color);
+    opacity: 0.5;
+}
+
+.carousel-indicators button.active {
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .carousel-item {
+        height: 300px;
+    }
+    
+    .carousel-caption {
+        padding: 10px;
+    }
+    
+    .carousel-caption h5 {
+        font-size: 1rem;
+    }
+    
+    .carousel-caption p {
+        font-size: 0.9rem;
+    }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+        width: 40px;
+        height: 40px;
+        margin: 0 10px;
+    }
+}
